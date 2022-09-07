@@ -16,7 +16,7 @@ class CategoriasSerializer(serializers.ModelSerializer):
         model = Categorias
         fields = '__all__'
 
-    def validate_titulo(self,titulo):
-        if  not titulo.isalph():
-            raise serializers.ValidationError("Por favor não insira numeros ")
-        return titulo
+    # def validate_titulo(self,titulo):
+    #     if  not titulo.isalph():
+    #         raise serializers.ValidationError("Por favor não insira numeros ")
+    #     return titulo

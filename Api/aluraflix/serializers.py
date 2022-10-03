@@ -4,7 +4,7 @@ from aluraflix.models import Videos,Categorias
 class VideosSerializer(serializers.ModelSerializer):
     class Meta:
         model = Videos
-        fields = ['titulo','descricao','data_lancamento','url']
+        fields = '__all__'
         # def validate_titulo(self,url):
         #     if  url.isalph():
         #         raise serializers.ValidationError({'url':"Por favor não insira numeros, insira urls de videos"})

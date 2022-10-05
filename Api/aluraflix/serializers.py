@@ -1,3 +1,4 @@
+from dataclasses import field
 from rest_framework import serializers
 from aluraflix.models import Videos,Categorias
 
@@ -20,3 +21,10 @@ class CategoriasSerializer(serializers.ModelSerializer):
     #     if  not titulo.isalph():
     #         raise serializers.ValidationError("Por favor não insira numeros ")
     #     return titulo
+
+class VideoPorCategoriasSerializer(serializers.ModelSerializer):
+    """Serializer para videos por categoria"""
+    video_nome = serializers.ReadOnlyField(source='categoriaId.nome')
+    class Meta:
+        model = Videos
+        exclude = ['categoriaId'] #menos o id fk irá aparecer

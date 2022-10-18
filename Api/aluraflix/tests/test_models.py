@@ -1,22 +1,27 @@
-from rest_framework.test import APITestCase
-from aluraflix.models import Videos
-from django.urls import reverse
-
-"""Testando models Videos""" #perfoming test on videos
+from django.test import TestCase
+from aluraflix.models import Categorias,Videos
 
 
-class VideoModelTestCase(APITestCase):
-    #realizando teste de unidade
-    def setup(self):
-        self.video = Videos(
-            titulo = 'Video backend',
-            descricao = 'Video backend description',
-            data_lancamento = '2002-08-05',
-            url='https://www.youtube.com/watch?v=l9nh1l8ZIJQ'
+class CategoriasTestCase(TestCase):
+    def setUp(self):
+        Categorias.objects.create(
+            nome='backend',
+            cor='azul'
         )
+    def test_create_categoria(self):
+        categoria = Categorias.objects.get(nome='backend')
+        self.assertEquals(categoria.__str__(), 'backend')
 
-    def test_verifica_atributos_video(self):
-        self.assertEqual(self.video.titulo, 'Video backend')
-        self.assertEqual(self.video.descricao, 'Video backend  description')
-        self.assertEqual(self.video.data_lancamento, '2002-08-05')
-        self.assertEqual(self.video.url, 'https://www.youtube.com/watch?v=l9nh1l8ZIJQ')
+
+class VideosTestCase(TestCase):
+    def setUp(self):
+        Videos.objects.create(
+            titulo='backend',
+            categoriaId='backend',
+            descricao='teste',
+            data_lancamento='2022-05-22',
+            url='https://www.youtube.com/watch?v=JIV6fcPN1tU'
+        )
+    def test_create_video(self):
+        video = Videos.objects.get(titulo='backend')
+        self.assertEquals(video.__str__(), 'backend')
